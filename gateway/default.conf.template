@@ -5,7 +5,7 @@ server {
     listen 80;
     listen [::]:80;
 
-    resolver ${DNS_RESOLVER} valid=10s;
+    resolver ${NGINX_LOCAL_RESOLVERS} valid=10s;
     client_max_body_size 64m;
 
     set $realtime http://${REALTIME_HOST};
