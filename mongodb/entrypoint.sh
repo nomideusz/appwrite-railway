@@ -4,8 +4,11 @@
 # the replica-set keyfile at /data/keyfile — both on the same volume.
 set -e
 
+# The volume mounts empty at /data, shadowing the image's baked /data/db.
+mkdir -p /data/db /data/configdb /data/keyfile
+chown mongodb:mongodb /data/db /data/configdb 2>/dev/null || true
+
 KEYFILE=/data/keyfile/mongo-keyfile
-mkdir -p /data/keyfile
 if [ ! -f "$KEYFILE" ]; then
   openssl rand -base64 756 > "$KEYFILE"
 fi
