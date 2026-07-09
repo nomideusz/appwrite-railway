@@ -2,8 +2,8 @@
 # Upstream hostnames are variables so nginx resolves them lazily via Railway's
 # private DNS instead of crashing if a sibling service isn't up yet.
 server {
-    listen 80;
-    listen [::]:80;
+    listen ${PORT};
+    listen [::]:${PORT};
 
     resolver ${NGINX_LOCAL_RESOLVERS} valid=10s;
     client_max_body_size 64m;
