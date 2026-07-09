@@ -23,7 +23,10 @@ chown 999:999 "$KEYFILE" 2>/dev/null || true
   done
   mongosh --quiet -u root -p "$MONGO_INITDB_ROOT_PASSWORD" --eval "
     try { rs.status() } catch (e) {
-      rs.initiate({_id: 'rs0', members: [{_id: 0, host: '${RAILWAY_PRIVATE_DOMAIN:-localhost}:27017'}]})
+      // Loopback on purpose: container IP/DNS changes across redeploys and a
+      // single-member set that can't self-identify exiles itself (no primary).
+      // Appwrite's mongo client connects directly, never reads the member list.
+      rs.initiate({_id: 'rs0', members: [{_id: 0, host: '127.0.0.1:27017'}]})
     }"
 ) &
 
