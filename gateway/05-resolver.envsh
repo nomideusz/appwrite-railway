@@ -1,0 +1,4 @@
+# Sourced by the nginx image entrypoint before template rendering.
+# Railway's private-network DNS server comes from resolv.conf; nginx needs it
+# as a resolver so proxy_pass hostnames re-resolve instead of failing at boot.
+export DNS_RESOLVER="$(awk '/^nameserver/{printf "[%s]", $2; exit}' /etc/resolv.conf)"

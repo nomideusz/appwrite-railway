@@ -1,0 +1,38 @@
+# Replicates the routing of Appwrite's stock Traefik: longest prefix wins.
+# Upstream hostnames are variables so nginx resolves them lazily via Railway's
+# private DNS instead of crashing if a sibling service isn't up yet.
+server {
+    listen 80;
+    listen [::]:80;
+
+    resolver ${DNS_RESOLVER} valid=10s;
+    client_max_body_size 64m;
+
+    set $realtime http://${REALTIME_HOST};
+    set $console  http://${CONSOLE_HOST};
+    set $appwrite http://${APPWRITE_HOST};
+
+    location /v1/realtime {
+        proxy_pass $realtime;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_read_timeout 86400s;
+        proxy_send_timeout 86400s;
+    }
+
+    location /console {
+        proxy_pass $console;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto https;
+    }
+
+    location / {
+        proxy_pass $appwrite;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_read_timeout 300s;
+    }
+}
