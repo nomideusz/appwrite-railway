@@ -1,5 +1,7 @@
 # Deploy and Host Appwrite on Railway
 
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/appwrite-1?utm_medium=integration&utm_source=button&utm_campaign=appwrite)
+
 [Appwrite](https://appwrite.io/) is an open-source backend-as-a-service: authentication (email, OAuth, magic links, teams), databases, file storage with on-the-fly image transforms, realtime subscriptions, and messaging — all behind one API with SDKs for web, mobile, and server.
 
 ## About Hosting Appwrite
