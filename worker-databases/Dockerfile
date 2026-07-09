@@ -3,6 +3,7 @@ FROM appwrite/appwrite:1.9
 ENV _APP_ENV=production \
     _APP_EDITION=self-hosted \
     _APP_WORKER_PER_CORE=2 \
+    _APP_CPU_NUM=4 \
     _APP_POOL_ADAPTER=stack \
     _APP_DB_ADAPTER=mongodb \
     _APP_DB_PORT=27017 \
