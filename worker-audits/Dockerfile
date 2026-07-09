@@ -17,6 +17,7 @@ ENV _APP_ENV=production \
     _APP_OPTIONS_FORCE_HTTPS=disabled \
     _APP_OPTIONS_ABUSE=enabled \
     _APP_USAGE_STATS=disabled \
+    _APP_STORAGE_DEVICE=s3 \
     _APP_EXECUTOR_SECRET=executor-not-deployed-on-railway \
     _APP_EXECUTOR_HOST=http://executor-not-deployed/v1
 
