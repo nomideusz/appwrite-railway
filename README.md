@@ -23,7 +23,7 @@ Appwrite 1.9 is a genuinely multi-service stack — API, console, realtime, Mong
 
 ### Implementation Details
 
-After deploying, open the **gateway** service's domain and sign up — the first account becomes the instance owner.
+**Your Appwrite URL is the `gateway` service's domain** — it's the only service with a public domain; the `appwrite` API service itself stays private behind it. Open that domain, go to `/console`, and sign up — the first account becomes the instance owner.
 
 Known limitations on Railway:
 
