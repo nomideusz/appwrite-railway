@@ -7,6 +7,7 @@ ENV _APP_ENV=production \
     _APP_POOL_ADAPTER=stack \
     _APP_DB_ADAPTER=mongodb \
     _APP_DB_PORT=27017 \
+    _APP_DB_PORT_DOCUMENTSDB=27017 \
     _APP_DB_SCHEMA=appwrite \
     _APP_DB_USER=appwrite \
     _APP_DB_ADAPTER_DOCUMENTSDB=mongodb \
