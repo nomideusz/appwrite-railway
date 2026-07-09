@@ -12,6 +12,13 @@ server {
     set $console  http://${CONSOLE_HOST};
     set $appwrite http://${APPWRITE_HOST};
 
+    # Railway healthcheck target: probes arrive with Host: healthcheck.railway.app,
+    # which Appwrite's router protection would 401 — answer locally instead.
+    location = /health {
+        return 200 'ok';
+        default_type text/plain;
+    }
+
     location /v1/realtime {
         proxy_pass $realtime;
         proxy_http_version 1.1;
