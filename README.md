@@ -2,21 +2,21 @@
 
 [![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/appwrite-1?utm_medium=integration&utm_source=button&utm_campaign=appwrite)
 
-[Appwrite](https://appwrite.io/) is an open-source backend-as-a-service: authentication (email, OAuth, magic links, teams), databases, file storage with on-the-fly image transforms, realtime subscriptions, and messaging — all behind one API with SDKs for web, mobile, and server.
+[Appwrite](https://appwrite.io/) is an open-source backend-as-a-service: authentication (email, OAuth, magic links, teams), databases, file storage with on-the-fly image transforms, realtime subscriptions, and messaging, all behind one API with SDKs for web, mobile, and server. This template runs **Appwrite 2.3**, the current major version, with the new Console.
 
 ## About Hosting Appwrite
 
-Appwrite 1.9 is a genuinely multi-service stack — API, console, realtime, MongoDB (primary), PostgreSQL (vectors), Redis, and a fleet of background workers. This template decomposes it into 13 Railway services wired over private networking, replacing the stock Traefik ingress with a small nginx gateway that replicates its routing (`/v1/realtime` → realtime, `/console` → console, everything else → API). MongoDB runs as a single-node replica set on a Railway volume (member on loopback so redeploys never lose the primary), and file storage goes to a **Railway bucket over S3** — no shared-volume juggling. First boot initializes the databases in about a minute; then open your gateway domain and create the admin account (first signup owns the instance).
+Appwrite 2 runs on PostgreSQL by default, keeps usage metrics in ClickHouse, and ships a new Console with a built-in terminal and API explorer. This template follows the upstream default ("combined") layout: the API, the Console, realtime, one worker that serves every queue, and the scheduler, maintenance and interval tasks, plus PostgreSQL, ClickHouse and Redis. A small nginx gateway takes Traefik's place and routes one public domain: `/v1` to the API, `/v1/realtime` to realtime, everything else to the Console. Uploaded files go to a **Railway bucket over S3**, so nothing needs a shared volume. Open your gateway domain once the deploy finishes and create the admin account (the first signup owns the instance).
 
 ## Common Use Cases
 
-- Full backend for web/mobile apps: auth, database, storage, and realtime from one endpoint
-- Self-hosted alternative to Firebase/Supabase with your data on your infrastructure
-- Identity provider for side projects — magic links, OAuth, teams, and sessions out of the box
+- Full backend for web and mobile apps: auth, database, storage, and realtime from one endpoint
+- Vector search for AI features with VectorsDB (enabled here, on the bundled PostgreSQL)
+- Self-hosted alternative to Firebase or Supabase with your data on your own infrastructure
 
 ## Dependencies for Appwrite Hosting
 
-- All bundled: MongoDB 8 (replica set), PostgreSQL, Redis, and an S3-compatible Railway bucket are provisioned by the template
+- All bundled: PostgreSQL 18, ClickHouse, Redis, and an S3-compatible Railway bucket are provisioned by the template
 
 ### Deployment Dependencies
 
@@ -25,13 +25,12 @@ Appwrite 1.9 is a genuinely multi-service stack — API, console, realtime, Mong
 
 ### Implementation Details
 
-**Your Appwrite URL is the `gateway` service's domain** — it's the only service with a public domain; the `appwrite` API service itself stays private behind it. Open that domain, go to `/console`, and sign up — the first account becomes the instance owner.
+**Your Appwrite URL is the `gateway` service's domain.** It is the only service with a public domain. Open it and sign up; the first account becomes the instance owner and further signups are closed (invite teammates from the Console). Sign up with email: the Console's GitHub button returns error 412 until you set `_APP_CONSOLE_GITHUB_APP_ID` and `_APP_CONSOLE_GITHUB_SECRET` on the `appwrite` service (GitHub OAuth app callback: `https://<your-domain>/v1/account/sessions/oauth2/callback/github/console`).
 
-Known limitations on Railway:
-
-- **Functions and Sites are not available**: Appwrite's executor spawns Docker containers via `docker.sock`, which Railway does not expose. Auth, databases, storage, realtime, and messaging all work fully.
-- Custom domains for projects should be added on the gateway service (Railway handles TLS).
-- SMTP is unset by default — configure `_APP_SMTP_*` variables on the `appwrite` and `worker-mails` services to enable email delivery.
+- **Email**: set the optional `_APP_SMTP_*` variables on the `appwrite` service (the worker reads them from there). Railway's Hobby plan blocks ports 25, 465 and 587, so use your provider's alternate port: 2525 (Mailgun, SendGrid) or 2587 (Resend).
+- **Custom domain**: add it to the `gateway` service, then set the gateway's `PUBLIC_HOST` variable to it. Every service reads the domain from there.
+- **Functions and Sites are not available**: Appwrite runs them in Docker containers it starts itself through `docker.sock`, which Railway does not expose. Auth, databases (TablesDB and VectorsDB), storage, realtime, and messaging all work.
+- **Memory**: about 2.7 GB at idle across all services, half of it ClickHouse (it feeds the Console's usage charts). Deploy on Hobby or above.
 
 ## Why Deploy Appwrite on Railway?
 

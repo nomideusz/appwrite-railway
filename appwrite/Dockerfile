@@ -1,27 +1,27 @@
-FROM appwrite/appwrite:1.9
+# One image for every Appwrite role. The API runs the default CMD; realtime,
+# worker, and the task services set a Railway start command (realtime, worker,
+# schedule, maintenance, interval) — the same entrypoints upstream compose uses.
+FROM appwrite/appwrite:2.3.0
 
 ENV _APP_ENV=production \
     _APP_EDITION=self-hosted \
-    _APP_WORKER_PER_CORE=2 \
+    _APP_LOCALE=en \
     _APP_CPU_NUM=4 \
-    _APP_POOL_ADAPTER=stack \
-    _APP_DB_ADAPTER=mongodb \
-    _APP_DB_PORT=27017 \
-    _APP_DB_PORT_DOCUMENTSDB=27017 \
+    _APP_WORKER_PER_CORE=2 \
+    _APP_WORKERS_NUM=1 \
+    _APP_DB_ADAPTER=postgresql \
+    _APP_DB_PORT=5432 \
     _APP_DB_SCHEMA=appwrite \
     _APP_DB_USER=appwrite \
-    _APP_DB_ADAPTER_DOCUMENTSDB=mongodb \
-    _APP_DB_ADAPTER_VECTORSDB=postgresql \
-    _APP_DB_SCHEMA_VECTORSDB=appwrite \
-    _APP_DB_USER_VECTORSDB=appwrite \
+    _APP_VECTORSDB=enabled \
     _APP_REDIS_PORT=6379 \
     _APP_OPTIONS_FORCE_HTTPS=disabled \
+    _APP_OPTIONS_ROUTER_FORCE_HTTPS=disabled \
     _APP_OPTIONS_ABUSE=enabled \
-    _APP_USAGE_STATS=disabled \
+    _APP_CONSOLE_WHITELIST_ROOT=enabled \
+    _APP_USAGE_STATS=enabled \
     _APP_STORAGE_DEVICE=s3 \
     _APP_STORAGE_LIMIT=30000000 \
     _APP_STORAGE_PREVIEW_LIMIT=20000000 \
     _APP_EXECUTOR_SECRET=executor-not-deployed-on-railway \
     _APP_EXECUTOR_HOST=http://executor-not-deployed/v1
-
-ENV _APP_CONSOLE_WHITELIST_ROOT=enabled _APP_LOCALE=en
