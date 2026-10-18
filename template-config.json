@@ -600,7 +600,7 @@
    "name": "redis",
    "icon": "https://devicons.railway.app/i/redis.svg",
    "source": {
-    "image": "redis:7.4.7-alpine"
+    "image": "redis:7.4.11-alpine"
    },
    "build": {},
    "deploy": {
