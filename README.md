@@ -21,7 +21,7 @@ Appwrite 2 runs on PostgreSQL by default, keeps usage metrics in ClickHouse, and
 ### Deployment Dependencies
 
 - [Appwrite documentation](https://appwrite.io/docs)
-- [Template source on GitHub](https://github.com/nomideusz/appwrite-railway)
+- [Template source on GitHub](https://github.com/two-workspaces/appwrite)
 
 ### Implementation Details
 

@@ -9,7 +9,7 @@
    "name": "gateway",
    "icon": "https://appwrite.io/assets/logomark/logo.svg",
    "source": {
-    "repo": "https://github.com/nomideusz/appwrite-railway",
+    "repo": "https://github.com/two-workspaces/appwrite",
     "rootDirectory": "/gateway"
    },
    "build": {},
@@ -52,7 +52,7 @@
    "name": "appwrite",
    "icon": "https://appwrite.io/assets/logomark/logo.svg",
    "source": {
-    "repo": "https://github.com/nomideusz/appwrite-railway",
+    "repo": "https://github.com/two-workspaces/appwrite",
     "rootDirectory": "/appwrite"
    },
    "build": {},
@@ -184,7 +184,7 @@
    "name": "console",
    "icon": "https://appwrite.io/assets/logomark/logo.svg",
    "source": {
-    "repo": "https://github.com/nomideusz/appwrite-railway",
+    "repo": "https://github.com/two-workspaces/appwrite",
     "rootDirectory": "/console"
    },
    "build": {},
@@ -210,7 +210,7 @@
    "name": "realtime",
    "icon": "https://appwrite.io/assets/logomark/logo.svg",
    "source": {
-    "repo": "https://github.com/nomideusz/appwrite-railway",
+    "repo": "https://github.com/two-workspaces/appwrite",
     "rootDirectory": "/appwrite"
    },
    "build": {},
@@ -271,7 +271,7 @@
    "name": "worker",
    "icon": "https://appwrite.io/assets/logomark/logo.svg",
    "source": {
-    "repo": "https://github.com/nomideusz/appwrite-railway",
+    "repo": "https://github.com/two-workspaces/appwrite",
     "rootDirectory": "/appwrite"
    },
    "build": {},
@@ -392,7 +392,7 @@
    "name": "task-scheduler",
    "icon": "https://appwrite.io/assets/logomark/logo.svg",
    "source": {
-    "repo": "https://github.com/nomideusz/appwrite-railway",
+    "repo": "https://github.com/two-workspaces/appwrite",
     "rootDirectory": "/appwrite"
    },
    "build": {},
@@ -448,7 +448,7 @@
    "name": "task-maintenance",
    "icon": "https://appwrite.io/assets/logomark/logo.svg",
    "source": {
-    "repo": "https://github.com/nomideusz/appwrite-railway",
+    "repo": "https://github.com/two-workspaces/appwrite",
     "rootDirectory": "/appwrite"
    },
    "build": {},
@@ -494,7 +494,7 @@
    "name": "task-interval",
    "icon": "https://appwrite.io/assets/logomark/logo.svg",
    "source": {
-    "repo": "https://github.com/nomideusz/appwrite-railway",
+    "repo": "https://github.com/two-workspaces/appwrite",
     "rootDirectory": "/appwrite"
    },
    "build": {},
@@ -540,7 +540,7 @@
    "name": "postgresql",
    "icon": "https://devicons.railway.app/i/postgresql.svg",
    "source": {
-    "repo": "https://github.com/nomideusz/appwrite-railway",
+    "repo": "https://github.com/two-workspaces/appwrite",
     "rootDirectory": "/postgresql"
    },
    "build": {},
@@ -570,7 +570,7 @@
    "name": "clickhouse",
    "icon": "https://devicons.railway.app/i/clickhouse.svg",
    "source": {
-    "repo": "https://github.com/nomideusz/appwrite-railway",
+    "repo": "https://github.com/two-workspaces/appwrite",
     "rootDirectory": "/clickhouse"
    },
    "build": {},
