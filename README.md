@@ -2,7 +2,7 @@
 
 [![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/appwrite-1?referralCode=sLjDXb&utm_medium=integration&utm_source=button&utm_campaign=appwrite)
 
-[Appwrite](https://appwrite.io/) is an open-source backend-as-a-service: authentication (email, OAuth, magic links, teams), databases, file storage with on-the-fly image transforms, realtime subscriptions, and messaging, all behind one API with SDKs for web, mobile, and server. This template runs **Appwrite 2.5**, the current major version, with the new Console.
+[Appwrite](https://appwrite.io/) is an open-source backend-as-a-service: authentication (email, OAuth, magic links, teams), databases, file storage with on-the-fly image transforms, realtime subscriptions, and messaging, all behind one API with SDKs for web, mobile, and server. This template runs **Appwrite 2.6**, the current major version, with the new Console.
 
 ## About Hosting Appwrite
 
@@ -30,7 +30,7 @@ Appwrite 2 runs on PostgreSQL by default, keeps usage metrics in ClickHouse, and
 - **Email**: set the optional `_APP_SMTP_*` variables on the `appwrite` service (the worker reads them from there). Railway's Hobby plan blocks ports 25, 465 and 587, so use your provider's alternate port: 2525 (Mailgun, SendGrid) or 2587 (Resend).
 - **Custom domain**: add it to the `gateway` service, then set the gateway's `PUBLIC_HOST` variable to it. Every service reads the domain from there.
 - **Functions and Sites are not available**: Appwrite runs them in Docker containers it starts itself through `docker.sock`, which Railway does not expose. Auth, databases (TablesDB and VectorsDB), storage, realtime, and messaging all work.
-- **Upgrading an existing deploy**: once every service runs the new version, run Appwrite's migration once from your machine with `railway ssh --service appwrite migrate`. Upgrading from 2.3 to 2.5 also updates the `gateway` service, which passes Appwrite the visitor's real IP.
+- **Upgrading an existing deploy**: once every service runs the new version, run Appwrite's migration once from your machine with `railway ssh --service appwrite migrate`. Upgrading from 2.3 or 2.4 also updates the `gateway` service, which passes Appwrite the visitor's real IP.
 - **Memory**: about 2.7 GB at idle across all services, half of it ClickHouse (it feeds the Console's usage charts). Deploy on Hobby or above.
 
 ## Why Deploy Appwrite on Railway?

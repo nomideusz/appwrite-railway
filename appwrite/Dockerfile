@@ -1,7 +1,7 @@
 # One image for every Appwrite role. The API runs the default CMD; realtime,
 # worker, and the task services set a Railway start command (realtime, worker,
 # schedule, maintenance, interval) — the same entrypoints upstream compose uses.
-FROM appwrite/appwrite:2.5.0
+FROM appwrite/appwrite:2.6.2
 
 ENV _APP_ENV=production \
     _APP_EDITION=self-hosted \
